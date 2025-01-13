@@ -1,0 +1,8 @@
+.editorconfig
+.env.example
+.gitignore
+/node_modules
+README.md
+Dockerfile
+Makefile
+/test

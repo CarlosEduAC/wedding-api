@@ -1,0 +1,3 @@
+npx commitlint --edit "$i"
+
+echo "> Commit-msg finished ! \n"
