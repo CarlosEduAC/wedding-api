@@ -1,0 +1,177 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Wedding Api",
+    "description": "The wedding platform API, secure and practical, is ideal for streamlining and personalizing the experience for the couple and their guests.",
+    "version": "v1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Local server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Health",
+      "description": "Endpoints relacionados a Health"
+    },
+    {
+      "name": "Product",
+      "description": "Endpoints relacionados a Product"
+    }
+  ],
+  "paths": {
+    "/health/": {
+      "get": {
+        "tags": ["Health"],
+        "summary": "Endpoint para Health Check",
+        "description": "Este endpoint é usado para verificar a disponibilidade e o status da API.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/products/": {
+      "post": {
+        "tags": ["Product"],
+        "summary": "Endpoint para criar Product",
+        "description": "Esse endpoint é responsável por armazenar Product.",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "price",
+                  "name",
+                  "description",
+                  "image",
+                  "quantity"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "price": {
+                    "type": "number"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "image": {
+                    "type": "string"
+                  },
+                  "quantity": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["Product"],
+        "summary": "Endpoint para obter todos os Products",
+        "description": "Esse endpoint permite a consulta de todos os Products.",
+        "parameters": [],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/products/{id}": {
+      "put": {
+        "tags": ["Product"],
+        "summary": "Endpoint para atualizar Product",
+        "description": "Esse endpoint é responsável por atualizar um Product.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "price",
+                  "name",
+                  "description",
+                  "image",
+                  "quantity"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "price": {
+                    "type": "number"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "image": {
+                    "type": "string"
+                  },
+                  "quantity": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["Product"],
+        "summary": "Endpoint para obter Product por Id",
+        "description": "Esse endpoint permite a consulta de um Product específica com base no id fornecido.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    }
+  }
+}
