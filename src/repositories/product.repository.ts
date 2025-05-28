@@ -5,8 +5,6 @@ import { logger } from '@/configs'
 export async function create(product: Product): Promise<void> {
   const data = {
     ...product,
-    created_at: new Date(),
-    updated_at: new Date(),
   }
 
   try {
