@@ -14,12 +14,19 @@ datasource db {
 }
 
 model product {
-  id          String    @id @db.VarChar(100)
-  price       Int
+  id          String    @id @default(uuid()) @db.Uuid
+  price       Float
   name        String    @db.VarChar(255)
   description String?   @db.VarChar(255)
   image       String    @db.VarChar(255)
   quantity    Int
   created_at  DateTime? @default(now())
-  updated_at  DateTime? @default(now())
+  updated_at  DateTime? @updatedAt
+}
+
+model checkout {
+  id         String    @id @default(uuid()) @db.Uuid
+  price      Float
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
 }
