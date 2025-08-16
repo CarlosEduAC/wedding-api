@@ -24,7 +24,9 @@
   "paths": {
     "/health/": {
       "get": {
-        "tags": ["Health"],
+        "tags": [
+          "Health"
+        ],
         "summary": "Endpoint para Health Check",
         "description": "Este endpoint é usado para verificar a disponibilidade e o status da API.",
         "responses": {
@@ -35,58 +37,24 @@
       }
     },
     "/products/": {
-      "post": {
-        "tags": ["Product"],
-        "summary": "Endpoint para criar Product",
-        "description": "Esse endpoint é responsável por armazenar Product.",
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Endpoint para buscar Products",
+        "description": "Esse endpoint é responsável por buscar todos os produtos no sistema.",
         "responses": {
           "default": {
             "description": ""
           }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": [
-                  "id",
-                  "price",
-                  "name",
-                  "description",
-                  "image",
-                  "quantity"
-                ],
-                "properties": {
-                  "id": {
-                    "type": "string"
-                  },
-                  "price": {
-                    "type": "number"
-                  },
-                  "name": {
-                    "type": "string"
-                  },
-                  "description": {
-                    "type": "string"
-                  },
-                  "image": {
-                    "type": "string"
-                  },
-                  "quantity": {
-                    "type": "number"
-                  }
-                }
-              }
-            }
-          }
         }
       },
-      "get": {
-        "tags": ["Product"],
-        "summary": "Endpoint para obter todos os Products",
-        "description": "Esse endpoint permite a consulta de todos os Products.",
-        "parameters": [],
+      "post": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Endpoint para armazenamento de Product",
+        "description": "Esse endpoint é responsável por armazenar um novo produto no sistema.",
         "responses": {
           "default": {
             "description": ""
@@ -96,9 +64,11 @@
     },
     "/products/{id}": {
       "put": {
-        "tags": ["Product"],
+        "tags": [
+          "Product"
+        ],
         "summary": "Endpoint para atualizar Product",
-        "description": "Esse endpoint é responsável por atualizar um Product.",
+        "description": "Esse endpoint é responsável por atualizar um novo produto no sistema.",
         "parameters": [
           {
             "name": "id",
@@ -113,49 +83,14 @@
           "default": {
             "description": ""
           }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": [
-                  "id",
-                  "price",
-                  "name",
-                  "description",
-                  "image",
-                  "quantity"
-                ],
-                "properties": {
-                  "id": {
-                    "type": "string"
-                  },
-                  "price": {
-                    "type": "number"
-                  },
-                  "name": {
-                    "type": "string"
-                  },
-                  "description": {
-                    "type": "string"
-                  },
-                  "image": {
-                    "type": "string"
-                  },
-                  "quantity": {
-                    "type": "number"
-                  }
-                }
-              }
-            }
-          }
         }
       },
       "get": {
-        "tags": ["Product"],
-        "summary": "Endpoint para obter Product por Id",
-        "description": "Esse endpoint permite a consulta de um Product específica com base no id fornecido.",
+        "tags": [
+          "Product"
+        ],
+        "summary": "Endpoint para buscar Product",
+        "description": "Esse endpoint é responsável por buscar um produto no sistema.",
         "parameters": [
           {
             "name": "id",
@@ -166,6 +101,70 @@
             }
           }
         ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/inviteds/": {
+      "get": {
+        "tags": [
+          "Invited"
+        ],
+        "summary": "Endpoint para buscar Inviteds",
+        "description": "Esse endpoint é responsável por buscar todos os convidados no sistema.",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Invited"
+        ],
+        "summary": "Endpoint para criar um novo Invited",
+        "description": "Esse endpoint é responsável por criar um novo convidado no sistema.",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/inviteds/{id}": {
+      "put": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Endpoint para atualizar Product",
+        "description": "Esse endpoint é responsável por atualizar um novo produto no sistema.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/inviteds/many": {
+      "post": {
+        "tags": [
+          "Invited"
+        ],
+        "summary": "Endpoint para criar vários novos Inviteds",
+        "description": "Esse endpoint é responsável por criar vários novos convidados no sistema.",
         "responses": {
           "default": {
             "description": ""
