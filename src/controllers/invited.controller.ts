@@ -18,6 +18,22 @@ export async function findAll(
   return response.status(StatusCodes.OK).json({ inviteds })
 }
 
+export async function create(
+  request: CustomRequest<Invited>,
+  response: Response,
+) {
+  /*
+  #swagger.tags = ['Invited']
+  #swagger.summary = 'Endpoint para criar um novo Invited'
+  #swagger.description = 'Esse endpoint é responsável por criar um novo convidado no sistema.'
+  */
+  const invited = request.body
+
+  const newInvited = await InvitedRepository.create(invited)
+
+  return response.status(StatusCodes.CREATED).json({ invited: newInvited })
+}
+
 export async function update(
   request: CustomRequest<Invited>,
   response: Response,
@@ -35,4 +51,20 @@ export async function update(
   return response
     .status(StatusCodes.OK)
     .json({ message: 'Convidado atualizado com sucesso' })
+}
+
+export async function createMany(
+  request: CustomRequest<Invited[]>,
+  response: Response,
+) {
+  /*
+  #swagger.tags = ['Invited']
+  #swagger.summary = 'Endpoint para criar vários novos Inviteds'
+  #swagger.description = 'Esse endpoint é responsável por criar vários novos convidados no sistema.'
+  */
+  const inviteds = request.body
+
+  await InvitedRepository.createMany(inviteds)
+
+  return response.status(StatusCodes.CREATED).json({ message: 'Convidados criados com sucesso' })
 }
