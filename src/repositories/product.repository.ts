@@ -1,6 +1,5 @@
-import { prisma } from '@/configs'
+import { prisma, logger } from '@/configs'
 import { Product } from '@/models/Product.entity'
-import { logger } from '@/configs'
 
 export async function create(product: Product): Promise<void> {
   const data = {
