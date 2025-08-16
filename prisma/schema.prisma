@@ -30,3 +30,12 @@ model checkout {
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
 }
+
+model invited {
+  id         String    @id @default(uuid()) @db.Uuid
+  name       String    @db.VarChar(255)
+  whatsapp   String?   @db.VarChar(255)
+  confirm    Boolean   @default(false)
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
+}
