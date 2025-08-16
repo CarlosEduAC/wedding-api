@@ -1,4 +1,4 @@
-FROM public.ecr.aws/docker/library/node:20.12.0-alpine3.19 as build-stage
+FROM public.ecr.aws/docker/library/node:24.5.0-alpine3.19 AS build-stage
 
 WORKDIR /usr/src/app
 
