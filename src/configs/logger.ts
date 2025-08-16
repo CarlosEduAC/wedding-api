@@ -24,14 +24,10 @@ const logger: Logger = Pino(
   {
     ...ecsFormat({ apmIntegration: false }),
     base: {
-      app_version: process.env.APP_VERSION,
-      BU: process.env.BU || 'cross',
-      tribe: process.env.TRIBE || 'financial',
-      tags: process.env.TAGS,
       log_type: 'api',
     },
     messageKey: 'message',
-    level: process.env.LOG_LEVEL || logLevelDefault,
+    level: logLevelDefault,
     formatters: {
       level(label: string) {
         return {
