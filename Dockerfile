@@ -2,7 +2,7 @@ FROM public.ecr.aws/docker/library/node:24.6-alpine3.22 AS builder
 
 WORKDIR /app
 
-RUN apk update && apk upgrade && apk add --no-cache openssl
+RUN apk update && apk upgrade && apk add --no-cache openssl libc6-compat
 
 COPY package*.json .
 COPY prisma ./prisma/
@@ -16,6 +16,9 @@ RUN npm run build
 FROM public.ecr.aws/docker/library/node:24.6-alpine3.22 AS runner
 
 WORKDIR /app
+
+RUN apk add --no-cache openssl libc6-compat
+
 COPY ./swagger.json ./dist/swagger.json
 
 COPY --from=builder /app/node_modules ./node_modules
