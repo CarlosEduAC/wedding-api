@@ -10,6 +10,6 @@ const routes = Router()
 routes.use('/health', HealthRouter)
 routes.use('/products', ProductRouter)
 routes.use('/inviteds', InvitedRouter)
-routes.use('/imagess', ImageRouter)
+routes.use('/images', ImageRouter)
 
 export default routes
