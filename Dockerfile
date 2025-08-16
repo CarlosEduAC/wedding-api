@@ -17,15 +17,11 @@ RUN apk update \
   && wget https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem \
   && mv global-bundle.pem /etc/ssl/
 
-
 ARG app_version
 ENV APP_VERSION=$app_version
 
 ARG app_name
 ENV APP_NAME=$app_name
-
-ARG aws_region
-ENV AWS_REGION=$aws_region
 
 ARG node_env
 ENV NODE_ENV=$node_env
