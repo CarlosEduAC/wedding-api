@@ -9,6 +9,19 @@ export async function findAll(): Promise<Invited[]> {
   return invitedsParsed
 }
 
+export async function create(invited: Invited): Promise<void> {
+  try {
+    await prisma.invited.create({
+      data: invited,
+    })
+
+    logger.info(`Convidado com id ${invited.id} criado com sucesso`)
+  } catch (error) {
+    logger.error(error, 'Erro ao criar convidado')
+    throw error
+  }
+}
+
 export async function update(id: string, product: Invited): Promise<void> {
   const data = product as object
 
@@ -24,5 +37,18 @@ export async function update(id: string, product: Invited): Promise<void> {
     logger.info(`Convidado com id ${id} atualizado com sucesso`)
   } catch (error) {
     logger.error(error, `Erro ao atualizar convidado com id ${id}`)
+  }
+}
+
+export async function createMany(inviteds: Invited[]): Promise<void> {
+  try {
+    await prisma.invited.createMany({
+      data: inviteds,
+    })
+
+    logger.info(`Convidados criados com sucesso`)
+  } catch (error) {
+    logger.error(error, 'Erro ao criar convidados')
+    throw error
   }
 }
