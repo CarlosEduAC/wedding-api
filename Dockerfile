@@ -1,4 +1,4 @@
-FROM public.ecr.aws/docker/library/node:24.5.0-alpine3.19 AS build-stage
+FROM public.ecr.aws/docker/library/node:24.6-alpine3.22 AS build-stage
 
 WORKDIR /usr/src/app
 
@@ -13,17 +13,6 @@ RUN npm run build
 COPY ./swagger.json ./dist/swagger.json
 
 RUN apk update \
-  && apk upgrade \
-  && wget https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem \
-  && mv global-bundle.pem /etc/ssl/
-
-ARG app_version
-ENV APP_VERSION=$app_version
-
-ARG app_name
-ENV APP_NAME=$app_name
-
-ARG node_env
-ENV NODE_ENV=$node_env
+  && apk upgrade
 
 CMD [ "node" ,"./dist/src/server.js" ]
