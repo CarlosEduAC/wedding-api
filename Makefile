@@ -33,7 +33,7 @@ lint:
 	npm run format
 
 docker-build:
-	docker build --no-cache -f ./Dockerfile --build-arg node_env=${NODE_ENV} --build-arg app_version=${TAG} --build-arg app_name=${APP_NAME} --build-arg -t $(FINAL_URL):$(TAG) .
+	docker build --no-cache -f ./Dockerfile --build-arg app_name=${APP_NAME} --build-arg -t $(FINAL_URL):$(TAG) .
 
 run-docker: docker-build
 	docker run -dp 3000:3000 $(FINAL_URL):latest
