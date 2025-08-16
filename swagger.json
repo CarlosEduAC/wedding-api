@@ -9,6 +9,10 @@
     {
       "url": "http://localhost:3000",
       "description": "Local server"
+    },
+    {
+      "url": "https://wedding-api-50dn.onrender.com",
+      "description": "Production server"
     }
   ],
   "tags": [
