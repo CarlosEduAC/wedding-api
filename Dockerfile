@@ -7,7 +7,7 @@ RUN apk update && apk upgrade && apk add --no-cache openssl
 COPY package*.json .
 COPY prisma ./prisma/
 
-RUN npm ci && npx prisma generate
+RUN npm i && npx prisma generate
 
 COPY . .
 
