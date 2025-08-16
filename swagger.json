@@ -141,9 +141,9 @@
     "/inviteds/{id}": {
       "put": {
         "tags": [
-          "Product"
+          "Invited"
         ],
-        "summary": "Endpoint para atualizar Product",
+        "summary": "Endpoint para atualizar Invited",
         "description": "Esse endpoint é responsável por atualizar um novo produto no sistema.",
         "parameters": [
           {
@@ -169,6 +169,46 @@
         ],
         "summary": "Endpoint para criar vários novos Inviteds",
         "description": "Esse endpoint é responsável por criar vários novos convidados no sistema.",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/imagess/": {
+      "get": {
+        "tags": [
+          "Image"
+        ],
+        "summary": "Endpoint para buscar todas as imagens",
+        "description": "Esse endpoint é responsável por buscar todas as imagens do pré wedding.",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Image"
+        ],
+        "summary": "Endpoint para adicionar uma nova imagem",
+        "description": "Esse endpoint é responsável por adicionar uma nova imagem no sistema.",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/imagess/many": {
+      "post": {
+        "tags": [
+          "Image"
+        ],
+        "summary": "Endpoint para adicionar várias imagens novas",
+        "description": "Esse endpoint é responsável por adicionar várias imagens novas no sistema.",
         "responses": {
           "default": {
             "description": ""

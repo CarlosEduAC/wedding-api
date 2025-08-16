@@ -39,8 +39,8 @@ export async function update(
   response: Response,
 ) {
   /*
-  #swagger.tags = ['Product']
-  #swagger.summary = 'Endpoint para atualizar Product'
+  #swagger.tags = ['Invited']
+  #swagger.summary = 'Endpoint para atualizar Invited'
   #swagger.description = 'Esse endpoint é responsável por atualizar um novo produto no sistema.'
   */
   const { id } = request.params
