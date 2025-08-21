@@ -9,6 +9,18 @@ export async function findAll(): Promise<Invited[]> {
   return invitedsParsed
 }
 
+export async function findConfirmed(): Promise<Invited[]> {
+  const confirmedInviteds = await prisma.invited.findMany({
+    where: {
+      confirm: true,
+    },
+  })
+
+  const confirmedInvitedsParsed = confirmedInviteds as unknown as Invited[]
+
+  return confirmedInvitedsParsed
+}
+
 export async function create(invited: Invited): Promise<void> {
   try {
     await prisma.invited.create({
