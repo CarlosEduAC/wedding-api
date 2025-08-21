@@ -18,6 +18,21 @@ export async function findAll(
   return response.status(StatusCodes.OK).json({ inviteds })
 }
 
+export async function findConfirmed(
+  _request: CustomRequest<Inviteds>,
+  response: Response,
+) {
+  /*
+  #swagger.tags = ['Invited']
+  #swagger.summary = 'Endpoint para buscar convidados confirmados'
+  #swagger.description = 'Esse endpoint é responsável por buscar todos os convidados confirmados no sistema.'
+  */
+  const confirmedInviteds = await InvitedRepository.findConfirmed()
+
+  return response.status(StatusCodes.OK).json({ confirmedInviteds })
+}
+
+
 export async function create(
   request: CustomRequest<Invited>,
   response: Response,
@@ -40,8 +55,8 @@ export async function update(
 ) {
   /*
   #swagger.tags = ['Invited']
-  #swagger.summary = 'Endpoint para atualizar Invited'
-  #swagger.description = 'Esse endpoint é responsável por atualizar um novo produto no sistema.'
+  #swagger.summary = 'Endpoint para atualizar convidado'
+  #swagger.description = 'Esse endpoint é responsável por atualizar o convidado no sistema.'
   */
   const { id } = request.params
   const invited = request.body
