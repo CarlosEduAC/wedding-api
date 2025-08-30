@@ -18,20 +18,6 @@ export async function findAll(
   return response.status(StatusCodes.OK).json({ inviteds })
 }
 
-export async function findAllNames(
-  _request: CustomRequest<Inviteds>,
-  response: Response,
-) {
-  /*
-  #swagger.tags = ['Invited']
-  #swagger.summary = 'Endpoint para buscar nomes de Inviteds'
-  #swagger.description = 'Esse endpoint é responsável por buscar todos os nomes dos convidados no sistema.'
-  */
-  const invitedNames = await InvitedRepository.findAllNames()
-
-  return response.status(StatusCodes.OK).json({ invitedNames })
-}
-
 export async function findConfirmed(
   _request: CustomRequest<Inviteds>,
   response: Response,
