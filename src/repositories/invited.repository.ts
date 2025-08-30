@@ -9,18 +9,6 @@ export async function findAll(): Promise<Invited[]> {
   return invitedsParsed
 }
 
-export async function findAllNames(): Promise<string[]> {
-  const invitedNames = await prisma.invited.findMany({
-    select: {
-      name: true,
-    },
-  })
-
-  const invitedNamesParsed = invitedNames as unknown as string[]
-
-  return invitedNamesParsed
-}
-
 export async function findConfirmed(): Promise<Invited[]> {
   const confirmedInviteds = await prisma.invited.findMany({
     where: {
