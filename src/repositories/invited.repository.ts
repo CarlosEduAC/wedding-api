@@ -1,10 +1,9 @@
-import path from 'path'
 import { google } from 'googleapis'
 import { logger } from '@/configs'
 import { Invited } from '@/models/Invited.entity'
 
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
-const KEY_PATH = path.resolve(__dirname, '../configs/auth.json')
+const KEY_PATH = '/tmp/auth.json'
 const SPREADSHEET_ID = '1e5Sw90emkDuMietu1KpW59vg4PWIl3kSNTlfMmK9mW4'
 const RANGE = 'Inviteds!A1:D100'
 
