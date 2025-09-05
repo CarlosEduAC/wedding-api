@@ -149,4 +149,3 @@ yarn.lock
 # Test coverage
 coverage/
 reports/
-./src/configs/auth.json
