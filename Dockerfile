@@ -6,6 +6,8 @@ RUN apk update && apk upgrade && apk add --no-cache openssl libc6-compat
 
 COPY package*.json .
 COPY prisma ./prisma/
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
 RUN npm i && npx prisma generate
 
@@ -24,13 +26,11 @@ COPY ./swagger.json ./dist/swagger.json
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/dist ./dist
+COPY --from=builder /usr/local/bin/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 
 ENV NODE_ENV=production
 
 EXPOSE 3000
-
-COPY docker-entrypoint.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD [ "node" ,"./dist/src/server.js" ]
