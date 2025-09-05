@@ -27,26 +27,9 @@ export async function findConfirmed(
   #swagger.summary = 'Endpoint para buscar convidados confirmados'
   #swagger.description = 'Esse endpoint é responsável por buscar todos os convidados confirmados no sistema.'
   */
-  const confirmedInviteds = await InvitedRepository.findConfirmed()
+  const confirmedInviteds = InvitedRepository.findConfirmed()
 
-  return response.status(StatusCodes.OK).json({ confirmedInviteds })
-}
-
-
-export async function create(
-  request: CustomRequest<Invited>,
-  response: Response,
-) {
-  /*
-  #swagger.tags = ['Invited']
-  #swagger.summary = 'Endpoint para criar um novo Invited'
-  #swagger.description = 'Esse endpoint é responsável por criar um novo convidado no sistema.'
-  */
-  const invited = request.body
-
-  const newInvited = await InvitedRepository.create(invited)
-
-  return response.status(StatusCodes.CREATED).json({ invited: newInvited })
+  return response.status(StatusCodes.OK).json({ inviteds: confirmedInviteds })
 }
 
 export async function update(
@@ -68,18 +51,3 @@ export async function update(
     .json({ message: 'Convidado atualizado com sucesso' })
 }
 
-export async function createMany(
-  request: CustomRequest<Invited[]>,
-  response: Response,
-) {
-  /*
-  #swagger.tags = ['Invited']
-  #swagger.summary = 'Endpoint para criar vários novos Inviteds'
-  #swagger.description = 'Esse endpoint é responsável por criar vários novos convidados no sistema.'
-  */
-  const inviteds = request.body
-
-  await InvitedRepository.createMany(inviteds)
-
-  return response.status(StatusCodes.CREATED).json({ message: 'Convidados criados com sucesso' })
-}

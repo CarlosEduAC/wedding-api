@@ -1,66 +1,64 @@
-import { prisma, logger } from '@/configs'
+import path from 'path'
+import { google } from 'googleapis'
+import { logger } from '@/configs'
 import { Invited } from '@/models/Invited.entity'
 
+const SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
+const KEY_PATH = path.resolve(__dirname, '../configs/auth.json')
+const SPREADSHEET_ID = '1e5Sw90emkDuMietu1KpW59vg4PWIl3kSNTlfMmK9mW4'
+const RANGE = 'Inviteds!A1:D100'
+
+const auth = new google.auth.GoogleAuth({
+  keyFilename: KEY_PATH,
+  scopes: SCOPES,
+})
+
+google.options({ auth })
+
+const client = google.sheets('v4')
+
 export async function findAll(): Promise<Invited[]> {
-  const inviteds = await prisma.invited.findMany()
+  const response = await client.spreadsheets.values.get({
+    spreadsheetId: SPREADSHEET_ID,
+    range: RANGE,
+  })
 
-  const invitedsParsed = inviteds as unknown as Invited[]
+  const inviteds = response.data.values.map(row => ({
+    id: row[0],
+    name: row[1],
+    whatsapp: row[2],
+    confirmed: row[3] === 'TRUE',
+  }))
 
-  return invitedsParsed
+  inviteds.shift()
+
+  return inviteds
 }
 
 export async function findConfirmed(): Promise<Invited[]> {
-  const confirmedInviteds = await prisma.invited.findMany({
-    where: {
-      confirm: true,
-    },
-  })
+  const inviteds = await findAll()
 
-  const confirmedInvitedsParsed = confirmedInviteds as unknown as Invited[]
+  const confirmedInviteds = inviteds.filter(invited => invited.confirmed)
 
-  return confirmedInvitedsParsed
+  return confirmedInviteds
 }
 
-export async function create(invited: Invited): Promise<void> {
+export async function update(id: number, product: Invited): Promise<void> {
   try {
-    await prisma.invited.create({
-      data: invited,
-    })
+    const index = Number(id) + 1
+    const range = `Inviteds!C${index}:D${index}`
 
-    logger.info(`Convidado com id ${invited.id} criado com sucesso`)
-  } catch (error) {
-    logger.error(error, 'Erro ao criar convidado')
-    throw error
-  }
-}
-
-export async function update(id: string, product: Invited): Promise<void> {
-  const data = product as object
-
-  try {
-    await prisma.invited.update({
-      select: { id: true },
-      where: {
-        id,
+    await client.spreadsheets.values.update({
+      spreadsheetId: SPREADSHEET_ID,
+      range: range,
+      valueInputOption: 'USER_ENTERED',
+      requestBody: {
+        values: [[product.whatsapp, product.confirmed ? 'TRUE' : 'FALSE']],
       },
-      data,
     })
 
     logger.info(`Convidado com id ${id} atualizado com sucesso`)
   } catch (error) {
     logger.error(error, `Erro ao atualizar convidado com id ${id}`)
-  }
-}
-
-export async function createMany(inviteds: Invited[]): Promise<void> {
-  try {
-    await prisma.invited.createMany({
-      data: inviteds,
-    })
-
-    logger.info(`Convidados criados com sucesso`)
-  } catch (error) {
-    logger.error(error, 'Erro ao criar convidados')
-    throw error
   }
 }

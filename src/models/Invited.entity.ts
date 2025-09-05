@@ -1,10 +1,8 @@
 export interface Invited {
-  id: string
+  id: number
   name: string
   whatsapp?: string
-  confirm: boolean
-  created_at?: Date
-  updated_at?: Date
+  confirmed: boolean
 }
 
 
