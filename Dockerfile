@@ -5,11 +5,10 @@ WORKDIR /app
 RUN apk update && apk upgrade && apk add --no-cache openssl libc6-compat
 
 COPY package*.json .
-COPY prisma ./prisma/
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
-RUN npm i && npx prisma generate
+RUN npm i
 
 COPY . .
 

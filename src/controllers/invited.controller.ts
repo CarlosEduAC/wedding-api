@@ -44,7 +44,7 @@ export async function update(
   const { id } = request.params
   const invited = request.body
 
-  await InvitedRepository.update(id, invited)
+  await InvitedRepository.update(Number(id), invited)
 
   return response
     .status(StatusCodes.OK)

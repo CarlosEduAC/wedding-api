@@ -22,7 +22,7 @@ export async function findAll(): Promise<Invited[]> {
     range: RANGE,
   })
 
-  const inviteds = response.data.values.map(row => ({
+  const inviteds = (response.data.values ?? []).map(row => ({
     id: row[0],
     name: row[1],
     whatsapp: row[2],
@@ -42,7 +42,7 @@ export async function findConfirmed(): Promise<Invited[]> {
   return confirmedInviteds
 }
 
-export async function update(id: number, product: Invited): Promise<void> {
+export async function update(id: number, invited: Invited): Promise<void> {
   try {
     const index = Number(id) + 1
     const range = `Inviteds!C${index}:D${index}`
@@ -52,7 +52,7 @@ export async function update(id: number, product: Invited): Promise<void> {
       range: range,
       valueInputOption: 'USER_ENTERED',
       requestBody: {
-        values: [[product.whatsapp, product.confirmed ? 'TRUE' : 'FALSE']],
+        values: [[invited.whatsapp, invited.confirmed ? 'TRUE' : 'FALSE']],
       },
     })
 

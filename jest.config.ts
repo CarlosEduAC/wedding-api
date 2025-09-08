@@ -12,7 +12,6 @@ module.exports = {
   coveragePathIgnorePatterns: [
     '/node_modules/',
     '/dist/',
-    '/prisma/',
     '/coverage/',
     '/reports/',
     '/src/configs',
@@ -20,7 +19,6 @@ module.exports = {
   testPathIgnorePatterns: [
     '/node_modules/',
     '/dist/',
-    '/prisma/',
     '/coverage/',
     '/reports/',
     '/src/configs',

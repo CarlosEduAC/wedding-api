@@ -19,10 +19,6 @@
     {
       "name": "Health",
       "description": "Endpoints relacionados a Health"
-    },
-    {
-      "name": "Product",
-      "description": "Endpoints relacionados a Product"
     }
   ],
   "paths": {
@@ -36,78 +32,6 @@
         "responses": {
           "200": {
             "description": "OK"
-          }
-        }
-      }
-    },
-    "/products/": {
-      "get": {
-        "tags": [
-          "Product"
-        ],
-        "summary": "Endpoint para buscar Products",
-        "description": "Esse endpoint é responsável por buscar todos os produtos no sistema.",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Product"
-        ],
-        "summary": "Endpoint para armazenamento de Product",
-        "description": "Esse endpoint é responsável por armazenar um novo produto no sistema.",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/products/{id}": {
-      "put": {
-        "tags": [
-          "Product"
-        ],
-        "summary": "Endpoint para atualizar Product",
-        "description": "Esse endpoint é responsável por atualizar um novo produto no sistema.",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      },
-      "get": {
-        "tags": [
-          "Product"
-        ],
-        "summary": "Endpoint para buscar Product",
-        "description": "Esse endpoint é responsável por buscar um produto no sistema.",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": ""
           }
         }
       }
@@ -169,46 +93,6 @@
         ],
         "summary": "Endpoint para criar vários novos Inviteds",
         "description": "Esse endpoint é responsável por criar vários novos convidados no sistema.",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/imagess/": {
-      "get": {
-        "tags": [
-          "Image"
-        ],
-        "summary": "Endpoint para buscar todas as imagens",
-        "description": "Esse endpoint é responsável por buscar todas as imagens do pré wedding.",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Image"
-        ],
-        "summary": "Endpoint para adicionar uma nova imagem",
-        "description": "Esse endpoint é responsável por adicionar uma nova imagem no sistema.",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/imagess/many": {
-      "post": {
-        "tags": [
-          "Image"
-        ],
-        "summary": "Endpoint para adicionar várias imagens novas",
-        "description": "Esse endpoint é responsável por adicionar várias imagens novas no sistema.",
         "responses": {
           "default": {
             "description": ""
